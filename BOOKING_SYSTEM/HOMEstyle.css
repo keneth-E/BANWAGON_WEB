@@ -1,0 +1,91 @@
+body,html{
+    border: 0%;
+    padding: 0%;
+    margin: 0%;
+    background: #000;
+}
+
+#BG-Home{
+    background-image: url(./Images/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#NAV-Bar{
+    background-color: #343A40;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+}
+#LOGO{
+    margin-left: 50px;
+}
+#NAV{
+    text-decoration: none;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-left: 5px;
+   
+}
+#btn_nav{
+    width: 150px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+.login{
+    width: auto;
+}
+a{
+    text-decoration: none;
+    
+}
+#WEB_PAGE{
+    font-style: oblique;
+    font-size: 65px;
+}
+#LOGIN{
+    width: auto;
+    margin-left: 100px;
+    color: black;
+    
+}
+#DATES{
+background: rgba(0, 0, 0, 0.55);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+width: 950px;
+height: 80px;
+
+}
+#check-in{
+    margin-top: 20px;
+    width: 275px;
+    height: 38px;
+    
+}
+#check-out{
+    margin-top: 20px;
+    width: 275px;
+    height: 38px;
+}
+#SEARCH{
+    margin-top: 20px;
+    width: 275px;
+    height: 38px;
+}
+#PROMO{
+    width: 1280px;
+    height: 100px;
+    background: #212121;
+}
+

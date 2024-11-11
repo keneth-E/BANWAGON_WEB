@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+
+<style>
+        body{
+        background-image: url(./Images/Background.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+
+
+    .Domain{
+        display: flex;
+        width: 840px;
+        height: 767px;
+        border-radius: 30px;
+        margin: auto;
+    }
+
+    .Blank{
+        background-color: white;
+        width: 50%;
+        height: 767px;
+        border-bottom-left-radius: 30px;
+        border-top-left-radius: 30px;
+        
+    }
+
+    .WithPic{
+        background-image: url(./Images/SignRight.png);
+        width: 50%;
+        height: 767px;
+        
+    }
+
+    .error{
+        color: red;
+        font-size: 12px;
+    }
+
+    button{
+    margin-left: 25%;
+    width: 50%;
+    border-radius: 40px;
+    background-color: black;
+    border: none;
+    }
+
+    .Ore{
+    text-align: center;
+}
+h4{
+    color: white;
+}
+
+a{
+   color: black;
+}
+
+.all{
+    width: 300px;
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none; 
+    padding: 5px 0; 
+}
+.all::placeholder {
+    color: black;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.logoUp{
+    margin-top: 200px;
+}
+
+
+</style>
+<body>
+    <div class="Domain">
+        <div class="Blank">
+            <div class="container">
+                <form id="signUpForm">
+                    <h1 style="margin-top: 50px;">SIGN UP</h1>
+                    <br> <br> 
+                    <div class="input-group" >
+                        <input type="text" class="all"  id="username" placeholder="Username:" required  /> <br>
+                        <span class="error" id="usernameError"></span>
+                    </div> <br><br> 
+
+                    <div class="input-group" > 
+                        <input type="email" class="all" id="email" placeholder="Email:" required  /> <br>
+                        <span class="error" id="emailError"></span>
+                    </div> <br> <br> 
+
+                    <div class="input-group" > 
+                    <input type="password" class="all"  id="password" placeholder="Password:" required  />
+                    <span id="shown" onclick="togglePass('password')"><img id="img" src="./Images/showw.png" alt=""></span> <br>
+                    <span class="error" id="passwordError"></span>
+                </div> <br><br>
+                <div class="input-group">
+                    <input type="password" class="all"  id="confirm" placeholder="Confirm Password:"  required  /> 
+                    <span id="show" onclick="togglePassword('confirm')"><img id="imahe" src="./Images/showw.png" alt=""></span> <br>
+                    <span class="error" id="confirmError"></span>
+                    
+                </div> <br><br>
+
+                <button type="submit"> <h4>Sign Up</h4> </button>
+                <br> <br>
+                <div class="Ore">
+                    ______________ or ______________  <br> <br> <br>
+                    Continue with <br> <br>
+                    <a href="https://www.google.com/" target="_blank"  >  <img src="./Images/Google.png" alt=""> </a> 
+                </div>
+                <p style="text-align: center;">Already have an account? <a href="trial_Login.html">Login</a></p>
+                 
+                </form>
+            </div>
+        </div>
+        <div style="filter: brightness(0.5);" class="WithPic">
+            <div class="logoUp"></div>
+                <img src="./Images/logo.png" alt="">
+            </div>
+        </div>
+        
+    </div>
+
+    <script> 
+    function togglePass(shown) {
+        const field = document.getElementById('password');
+        const type = field.getAttribute('type') === 'password' ? 'text' :'password';
+        field.setAttribute('type', type);
+        const img = document.getElementById('img');
+        img.src = type === 'password'? './Images/showw.png' : './Images/hidden.png';
+
+    }
+    function togglePassword(show) {
+        const field = document.getElementById('confirm');
+        const type = field.getAttribute('type') === 'password' ? 'text' :'password';
+        field.setAttribute('type', type);
+        const image = document.getElementById('imahe');
+        image.src = type === 'password'? './Images/showw.png' : './Images/hidden.png';
+
+    }
+        document.getElementById('signUpForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+          document.getElementById('usernameError').textContent='';
+          document.getElementById('emailError').textContent='';
+          document.getElementById('passwordError').textContent='';
+          document.getElementById('confirmError').textContent='';
+
+         const username = document.getElementById('username').value;
+         const email = document.getElementById('email').value;
+         const password = document.getElementById('password').value;
+         const confirm = document.getElementById('confirm').value;
+
+         let valid = true;
+
+         if (username.length<8){
+            document.getElementById('usernameError').textContent='Username must be at least 8 characters long.';
+            valid = false;
+         } 
+              const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').textContent=' Please enter a valid email address.';
+                valid = false;
+            }
+         if (password.length<10){
+            document.getElementById('passwordError').textContent='Password must be at least 10 characters long.';
+            valid = false;
+         }
+          if(confirm!==password){
+            document.getElementById('confirmError').textContent='Passwords do not match.';
+            valid = false;
+
+         }
+         if (valid){
+            const User = {
+                username: username,
+                email: email,
+                password: password,
+                confirmPassword: confirm
+            };
+            localStorage.setItem('User', JSON.stringify(User));
+            console.log(localStorage.getItem('User'));
+            
+
+            alert('Sign Up Successful!');
+            document.getElementById('signUpForm').reset();
+            
+         }
+
+        });
+
+    </script>
+    
+</body>
+</html>
